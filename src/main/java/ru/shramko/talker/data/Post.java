@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -25,10 +26,11 @@ public final class Post {
 	
 	//TODO: удалить после добавления пользователей
 	@NotNull
+	@NotBlank(message = "Необходимо представиться")
 	private String authorNickname;
 	
 	@NotNull
-	@Size(min = 3, max = 100)
+	@Size(min = 3, max = 100, message = "Заголовок обязателен. Минимум 3 символа")
 	private String title;
 	
 	private String message;
