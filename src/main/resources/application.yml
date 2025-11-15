@@ -1,0 +1,22 @@
+spring:
+    application:
+        name: talker
+    config:
+        import: classpath:/application-secret.yml
+    
+---
+spring:
+    config:
+        activate:
+            on-profile: development
+        
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        
+    jpa:
+        hibernate:
+            ddl-auto: update
+            
+    
+        
+        
