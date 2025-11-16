@@ -10,6 +10,9 @@ spring:
         activate:
             on-profile: development
         
+    thymeleaf:
+        cache: false
+        
     datasource:
         driver-class-name: org.postgresql.Driver
         
