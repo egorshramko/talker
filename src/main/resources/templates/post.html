@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org/">
+
+    <head>
+        <title>Talker</title>
+    </head>
+    
+    <body>
+        <a th:href="@{/posts}">Вернуться к списку постов</a>
+        <h1>Пост</h1>
+        <h3 th:text="${post.title}">Заголовок поста</h3>
+        <p th:text="${post.message}">Содержимое поста</p>
+    </body>
+    
+</html>
