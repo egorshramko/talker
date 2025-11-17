@@ -4,6 +4,16 @@
 
     <head>
         <title>Talker</title>
+        
+        <style>
+            .comment {
+                border: 1px solid;
+                margin-bottom: 2px;
+            }
+            .comment .nickname {
+                font-weight: bold;
+            }
+        </style>
     </head>
     
     <body>
@@ -11,6 +21,14 @@
         <h1>Пост</h1>
         <h3 th:text="${post.title}">Заголовок поста</h3>
         <p th:text="${post.message}">Содержимое поста</p>
+        <div>
+            <h5>Комментарии:</h5>
+            <a th:href="@{/post/{postId}/comment(postId=${post.id})}">Оставить комментарий</a>
+            <div class="comment" th:each="comment : ${post.comments}">
+                <p class="nickname" th:text="${comment.authorNickname}"></p>
+                <p th:text="${comment.message}"></p>
+            </div>
+        </div>
     </body>
     
 </html>

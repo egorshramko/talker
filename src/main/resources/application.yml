@@ -10,6 +10,10 @@ spring:
         activate:
             on-profile: development
         
+    logging:
+        level: 
+            root: DEBUG
+       
     thymeleaf:
         cache: false
         
