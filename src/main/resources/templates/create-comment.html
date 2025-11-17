@@ -12,7 +12,7 @@
     </head>
     
     <body>
-        <a th:href="@{/post/{postId}(postId = ${post.id})}">Вернуться к посту</a>
+        <a th:href="@{/post/{postId}(postId=${postId})}">Вернуться к посту</a>
         <h1>Оставить комментарий</h1>
         <form th:object="${comment}" method="POST">
             <label for="authorNickname">Представьтесь, пожалуйста: </label>

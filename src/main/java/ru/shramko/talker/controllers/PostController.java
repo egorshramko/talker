@@ -94,6 +94,7 @@ public class PostController {
 		}
 		
 		CommentDto commentDto = new CommentDto();
+		model.addAttribute("postId", id);
 		model.addAttribute("comment", commentDto);
 		
 		return "create-comment";
