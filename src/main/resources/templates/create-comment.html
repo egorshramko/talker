@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+      
+    <head>
+        <title>Talker</title>
+        <style>
+            .validation-error {
+                color: red;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <a th:href="@{/post/{postId}(postId=${postId})}">Вернуться к посту</a>
+        <h1>Оставить комментарий</h1>
+        <form th:object="${comment}" method="POST">
+            <label for="authorNickname">Представьтесь, пожалуйста: </label>
+            <input type="text" th:field="*{authorNickname}" />
+            <span class="validation-error" th:if="${#fields.hasErrors('authorNickname')}"
+                  th:errors="*{authorNickname}">Ошибка никнейма</span>
+            <br />
+            
+            <label for="message">Комментарий: </label>
+            <textarea th:field="*{message}"></textarea>
+            <span class="validation-error" th:if="${#fields.hasErrors('message')}"
+                  th:errors="*{message}">Ошибка в комментарии</span>
+            <br />
+            
+            <input type="submit" value="Опубликовать" />
+        </form>
+    </body>
+</html>

@@ -13,6 +13,7 @@
             <span th:text="${post.authorNickname}"></span>
             <h3 th:text="${post.title}">Title</h3>
             <p th:text="${post.message}">Message</p>
+            <a th:href="@{/post/{postId}(postId=${post.id})}">Открыть запись</a>
         </div>
     </body>
 

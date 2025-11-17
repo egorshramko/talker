@@ -6,13 +6,21 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public final class Comment {
 	
 	@Id
@@ -24,13 +32,16 @@ public final class Comment {
 	private LocalDateTime createdAt = LocalDateTime.now();
 	
 	@NotNull
+	@NotBlank(message = "Необходимо представиться")
 	private String authorNickname;
 	
 	@NotNull
+	@Size(min = 1, message = "Оставьте комментарий")
 	private String message;
 	
 	@NotNull
 	@ManyToOne
+	@JoinColumn(name = "post_id")
 	private Post post;
 	
 }
