@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.validation.Valid;
 import ru.shramko.talker.security.dto.RegistrationDto;
 import ru.shramko.talker.security.repo.UserRepository;
 
@@ -42,9 +43,12 @@ public class SignUpController {
 	}
 	
 	@PostMapping
-	public String signUp(RegistrationDto registrationForm,
+	public String signUp(@Valid RegistrationDto registrationForm,
 			Errors errors) {
 		
+		if (errors.hasErrors()) {
+			return "sign-up";
+		}
 		
 		boolean userIsExist = userRepository
 				.findByUsername(registrationForm.getUsername())
