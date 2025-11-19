@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    
+    <head>
+        <title>Talker</title>
+        <style>
+            .validation-error {
+                color: red;
+            }
+        </style>
+    </head>
+    
+    <body>
+        
+        <a th:href="@{/}">На главную</a>
+        <h1>Войти в Talker</h1>
+        <form th:action="@{/login}" method="post">
+            <div class="validation-error" th:if="${param.error}">
+                Некорректное имя пользователя или пароль
+            </div>
+            <div>
+                <label for="username">Имя пользователя: </label>
+                <input type="text" id="username" name="username" />
+            </div>
+            <div>
+                <label for="password">Пароль: </label>
+                <input type="password" id="password" name="password" />
+            </div>
+            
+            <!-- div>
+                <label for="remember-me">Запомнить меня</label>
+                <input type="checkbox" id="remember-me" name="remember-me" />
+            </div-->
+            
+            <div>
+                <input type="submit" value="Войти" />
+            </div>
+            
+        </form>
+        Впервые в Talker? <a th:href="@{/signup}">Зарегистрироваться</a>
+    </body>
+     
+</html>

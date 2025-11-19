@@ -3,6 +3,7 @@ package ru.shramko.talker.data;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,6 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import ru.shramko.talker.security.data.User;
 
 @Data
 @Entity
@@ -32,8 +34,8 @@ public final class Comment {
 	private LocalDateTime createdAt = LocalDateTime.now();
 	
 	@NotNull
-	@NotBlank(message = "Необходимо представиться")
-	private String authorNickname;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private User author;
 	
 	@NotNull
 	@Size(min = 1, message = "Оставьте комментарий")
