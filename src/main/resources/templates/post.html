@@ -17,6 +17,10 @@
     </head>
     
     <body>
+        <p th:text="'Вы авторизованы как ' + ${username}"></p>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Выйти" />
+        </form>
         <a th:href="@{/posts}">Вернуться к списку постов</a>
         <h1>Пост</h1>
         <h3 th:text="${post.title}">Заголовок поста</h3>
@@ -25,7 +29,7 @@
             <h5>Комментарии:</h5>
             <a th:href="@{/post/{postId}/comment(postId=${post.id})}">Оставить комментарий</a>
             <div class="comment" th:each="comment : ${post.comments}">
-                <p class="nickname" th:text="${comment.authorNickname}"></p>
+                <p class="nickname" th:text="${comment.author.username}"></p>
                 <p th:text="${comment.message}"></p>
             </div>
         </div>

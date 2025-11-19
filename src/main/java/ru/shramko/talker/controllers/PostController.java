@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -21,6 +22,7 @@ import ru.shramko.talker.dto.CommentDto;
 import ru.shramko.talker.dto.utils.CommentMapper;
 import ru.shramko.talker.repo.CommentRepository;
 import ru.shramko.talker.repo.PostRepository;
+import ru.shramko.talker.security.data.User;
 import ru.shramko.talker.service.CommentService;
 
 @Slf4j
@@ -43,6 +45,11 @@ public class PostController {
 		return new Post();
 	}
 	
+	@ModelAttribute("username")
+	public String username(@AuthenticationPrincipal User user) {
+		return user.getUsername();
+	}
+	
 	@GetMapping("/posts")
 	public String getPostsPage() {
 		return "posts";
@@ -55,12 +62,14 @@ public class PostController {
 	
 	@PostMapping("/post")
 	public String createPost(@Valid Post post,
-			Errors errors) {
+			Errors errors,
+			@AuthenticationPrincipal User user) {
 		
 		if (errors.hasErrors()) {
 			return "create-post";
 		}
 		
+		post.setAuthor(user);
 		postRepository.save(post);
 		
 		return "redirect:/posts";

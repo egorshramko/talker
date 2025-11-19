@@ -11,13 +11,12 @@
         </style>
     </head>
     <body>
+        <p th:text="'Вы авторизованы как ' + ${username}"></p>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Выйти" />
+        </form>
         <h2>Создать новую запись</h2>
-        <form th:object="${post}" method="POST">
-            <label for="authorNickname">Представьтесь, пожалуйста: </label>
-            <input type="text" th:field="*{authorNickname}" />
-            <span class="validation-error" th:if="${#fields.hasErrors('authorNickname')}"
-                  th:errors="*{authorNickname}">Ошибка никнейма</span>
-            <br />
+        <form th:object="${post}" th:action="@{/post}" method="POST">
             
             <label for="title">Заголовок: </label>
             <input type="text" th:field="*{title}" />

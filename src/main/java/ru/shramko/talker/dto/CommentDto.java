@@ -9,9 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public final class CommentDto {
-
-	@NotBlank(message = "Необходимо представиться")
-	private String authorNickname;
 	
 	@NotBlank(message = "Оставь комментарий")
 	private String message;
