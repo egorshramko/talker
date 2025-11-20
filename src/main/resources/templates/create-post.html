@@ -15,6 +15,7 @@
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Выйти" />
         </form>
+        <a th:href="@{/posts}">Вернуться к списку постов</a>
         <h2>Создать новую запись</h2>
         <form th:object="${post}" th:action="@{/post}" method="POST">
             
