@@ -29,6 +29,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class User implements UserDetails {
 
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_pkey_generator")
 	@SequenceGenerator(name = "user_pkey_generator", sequenceName = "user_pkey_seq", 

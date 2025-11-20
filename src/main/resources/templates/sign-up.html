@@ -13,6 +13,7 @@
     
     <body>
         
+        <a th:href="@{/}">На главную</a>
         <h1>Зарегистрироваться в Talker</h1>
         <form th:action="@{/signup}" th:object="${registrationDto}" method="post">
             
@@ -41,6 +42,7 @@
             </div>
             
         </form>
+        <span>Уже зарегистрированы? </span><a th:href="@{/login}">Войти в Talker</a>
         
     </body>
       
