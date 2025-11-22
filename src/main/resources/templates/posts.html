@@ -6,7 +6,7 @@
         <title>Talker</title>
     </head>
     <body>
-        <p th:text="'Вы авторизованы как ' + ${username}"></p>
+        <p th:text="'Вы авторизованы как ' + ${user.username}"></p>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Выйти" />
         </form>

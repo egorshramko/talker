@@ -45,14 +45,9 @@ public class PostController {
 		return new Post();
 	}
 	
-//	@ModelAttribute("comment")
-//	public CommentDto commentDto() {
-//		return new CommentDto();
-//	}
-	
-	@ModelAttribute("username")
-	public String username(@AuthenticationPrincipal User user) {
-		return user.getUsername();
+	@ModelAttribute("user")
+	public User username(@AuthenticationPrincipal User user) {
+		return user;
 	}
 	
 	@GetMapping("/posts")
