@@ -26,7 +26,7 @@ public class SecurityConfig {
 					authorizeHttpRequests
 							.dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
 							.requestMatchers("/logout").authenticated()
-							.requestMatchers("/posts", "/post/**").hasRole("USER")
+							.requestMatchers("/posts", "/post/**", "/profile/**").hasRole("USER")
 							.requestMatchers("/", "/login", "/signup").permitAll()
 							.anyRequest().denyAll();
 				})
