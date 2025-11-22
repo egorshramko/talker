@@ -30,6 +30,6 @@ public class Profile {
 	
 	@NotNull
 	@OneToOne
-	private User user;
+	private final User user;
 	
 }
