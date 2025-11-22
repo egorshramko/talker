@@ -9,7 +9,8 @@ import ru.shramko.talker.data.Profile;
 
 public interface ProfileRepository extends CrudRepository<Profile, Long> {
 	
-	@Query("Select p from Profile p, User u join fetch p.posts where u = p.user and u.id = ?1")
+	@Query("Select p from Profile p, User u "
+			+ "where u = p.user and u.id = ?1")
 	Optional<Profile> getProfileByUserId(Long userId);
 	
 }
