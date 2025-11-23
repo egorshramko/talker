@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Talker</title>
+    </head>
+    
+    <body>
+        
+        <p>Вы авторизованы как <a th:href="@{/profile/{userId}(userId=${user.id})}" th:text="${user.username}"></a> </p>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Выйти" />
+        </form>
+        
+        <a th:href="@{/profile/{userId}(userId=${user.id})}">Вернуться в профиль</a>
+        
+        <h2>Редактирование профиля</h2>
+        
+        <form th:action="@{/profile/{userId}/edit(userId=${user.id})}" th:object="${profile}" method="post">
+            
+            <div>
+                <label for="firstname">Имя: </label>
+                <input type="text" th:field="*{firstname}" />
+            </div>
+            
+            <div>
+                <label for="lastname">Фамилия: </label>
+                <input type="text" th:field="*{lastname}" />
+            </div>
+            
+            <div>
+                <input type="submit" value="Сохранить" />
+            </div>
+            
+        </form>
+        
+    </body>
+
+</html>

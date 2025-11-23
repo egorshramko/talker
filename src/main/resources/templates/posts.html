@@ -6,15 +6,15 @@
         <title>Talker</title>
     </head>
     <body>
-        <p th:text="'Вы авторизованы как ' + ${username}"></p>
+        <p>Вы авторизованы как <a th:href="@{/profile/{userId}(userId=${user.id})}" th:text="${user.username}"></a> </p>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Выйти" />
         </form>
         <h1>Добро пожаловать в Talker!</h1>
         <h3>Оставь свое сообщение миру</h3>
-        <a th:href="@{/post}">Добавить запись</a>
+
         <div style="border: 2px solid" th:each="post : ${posts}">
-            <span th:text="${post.author.username}"></span>
+            <a th:href="@{/profile/{userId}(userId=${post.author.id})}" th:text="${post.author.username}"></a>
             <h3 th:text="${post.title}">Title</h3>
             <p th:text="${post.message}">Message</p>
             <a th:href="@{/post/{postId}(postId=${post.id})}">Открыть запись</a>

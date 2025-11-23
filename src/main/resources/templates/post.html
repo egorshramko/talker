@@ -17,7 +17,7 @@
     </head>
     
     <body>
-        <p th:text="'Вы авторизованы как ' + ${username}"></p>
+        <p>Вы авторизованы как <a th:href="@{/profile/{userId}(userId=${user.id})}" th:text="${user.username}"></a> </p>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Выйти" />
         </form>
@@ -29,7 +29,7 @@
             <h5>Комментарии:</h5>
             <a th:href="@{/post/{postId}/comment(postId=${post.id})}">Оставить комментарий</a>
             <div class="comment" th:each="comment : ${post.comments}">
-                <p class="nickname" th:text="${comment.author.username}"></p>
+                <a th:href="@{/profile/{userId}(userId=${post.author.id})}" th:text="${post.author.username}"></a>
                 <p th:text="${comment.message}"></p>
             </div>
         </div>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+    <head>
+        <title>Talker</title>
+    </head>
+    
+    <body>
+        
+        <p>Вы авторизованы как <a th:href="@{/profile/{userId}(userId=${user.id})}" th:text="${user.username}"></a> </p>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Выйти" />
+        </form>
+        
+        <a th:href="@{/posts}">Вернуться к списку постов</a>
+        
+        <h1 th:text="${profile.user.username}"></h1>
+        <h3 th:text="(${profile.firstname} ?: '') + ' ' + (${profile.lastname} ?: '')"></h3>
+        <a th:if="${user.username.equals(profile.user.username)}" th:href="@{/profile/{userId}/edit(userId=${user.id})}">Редактировать профиль</a>
+        
+        <h4>Посты пользователя:</h4>
+        
+        <a th:if="${user.username.equals(profile.user.username)}" th:href="@{/post}">Создать новый пост</a>
+        
+        <div style="border: 2px solid" th:each="post : ${profile.posts}">
+            <span th:text="${post.author.username}"></span>
+            <h3 th:text="${post.title}">Title</h3>
+            <p th:text="${post.message}">Message</p>
+            <a th:href="@{/post/{postId}(postId=${post.id})}">Открыть запись</a>
+        </div>
+        
+    </body>
+      
+</html>
