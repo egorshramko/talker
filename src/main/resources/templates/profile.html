@@ -24,7 +24,7 @@
         <a th:if="${user.username.equals(profile.user.username)}" th:href="@{/post}">Создать новый пост</a>
         
         <div style="border: 2px solid" th:each="post : ${profile.posts}">
-            <span th:text="${post.author.username}"></span>
+            <a th:href="@{/profile/{userId}(userId=${post.author.id})}" th:text="${post.author.username}"></a>
             <h3 th:text="${post.title}">Title</h3>
             <p th:text="${post.message}">Message</p>
             <a th:href="@{/post/{postId}(postId=${post.id})}">Открыть запись</a>
