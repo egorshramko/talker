@@ -12,7 +12,7 @@
     </head>
     
     <body>
-        <p th:text="'Вы авторизованы как ' + ${username}"></p>
+        <p>Вы авторизованы как <a th:href="@{/profile/{userId}(userId=${user.id})}" th:text="${user.username}"></a> </p>
         
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Выйти" />

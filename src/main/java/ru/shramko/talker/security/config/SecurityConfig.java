@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,6 +18,7 @@ import ru.shramko.talker.security.repo.UserRepository;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
 	
 	@Bean
@@ -26,7 +28,7 @@ public class SecurityConfig {
 					authorizeHttpRequests
 							.dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
 							.requestMatchers("/logout").authenticated()
-							.requestMatchers("/posts", "/post/**").hasRole("USER")
+							.requestMatchers("/posts", "/post/**", "/profile/**").hasRole("USER")
 							.requestMatchers("/", "/login", "/signup").permitAll()
 							.anyRequest().denyAll();
 				})
