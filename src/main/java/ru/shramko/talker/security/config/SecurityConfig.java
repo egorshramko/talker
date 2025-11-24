@@ -29,7 +29,7 @@ public class SecurityConfig {
 							.dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
 							.requestMatchers("/logout").authenticated()
 							.requestMatchers("/posts", "/post/**", "/profile/**").hasRole("USER")
-							.requestMatchers("/", "/login", "/signup").permitAll()
+							.requestMatchers("/", "/login", "/signup", "/images/**").permitAll()
 							.anyRequest().denyAll();
 				})
 				.formLogin((formLogin) -> {
