@@ -29,7 +29,7 @@
             <h5>Комментарии:</h5>
             <a th:href="@{/post/{postId}/comment(postId=${post.id})}">Оставить комментарий</a>
             <div class="comment" th:each="comment : ${post.comments}">
-                <a th:href="@{/profile/{userId}(userId=${post.author.id})}" th:text="${post.author.username}"></a>
+                <a th:href="@{/profile/{userId}(userId=${comment.author.id})}" th:text="${comment.author.username}"></a>
                 <p th:text="${comment.message}"></p>
             </div>
         </div>

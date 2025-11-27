@@ -115,7 +115,8 @@ public class PostController {
 			@Valid @ModelAttribute("comment") 
 					CommentDto commentDto,
 			Errors errors,
-			Model model) {
+			Model model,
+			@AuthenticationPrincipal User user) {
 		
 		log.info("launch handleCommentCreating");
 		
@@ -125,6 +126,8 @@ public class PostController {
 			model.addAttribute("postId", postId);
 			return "create-comment";
 		}
+		
+		log.info("username who called method: " + user.getUsername());
 		
 		commentService.addCommentToPost(commentDto, postId);
 		
