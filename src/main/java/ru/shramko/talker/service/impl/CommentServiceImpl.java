@@ -36,6 +36,8 @@ public class CommentServiceImpl implements CommentService {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) authentication.getPrincipal();
 		
+		log.info("principal from addCommentToPost: " + user.getUsername());
+		
 		Post post = postRepository.findById(postId)
 				.orElseThrow(() -> new IllegalArgumentException("Post not found - " + postId.toString()));
 		
